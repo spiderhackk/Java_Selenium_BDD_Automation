@@ -16,7 +16,9 @@ public class DashboardPage {
 
     private WebDriver driver;
     private By ListOfHeaderName = By.xpath("//div[@class='rt-table']/div[@class='rt-thead -header']/div/div");
-
+    private By inputSearchBox = By.xpath("//input[@id='searchBox']");
+    private By searchButton = By.xpath("//span[@id='basic-addon2']");
+    private By resultList = By.xpath("//div[@class='rt-tr-group']//a");
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -47,5 +49,27 @@ public class DashboardPage {
             }
             i++;
         }
+    }
+
+
+    public void validateTheSearchBox(String searchItemName){
+        driver.findElement(inputSearchBox).sendKeys(searchItemName);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.findElement(searchButton).click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        List<WebElement> element = driver.findElements(resultList);
+        int elementsCount = element.size();
+        for (int i =1;i<=elementsCount;i++){
+            WebElement getBookName = driver.findElement(By.xpath("(//div[@class='rt-tr-group']//a)["+ i +"]"));
+            String bookName =getBookName.getText();
+            if (bookName.equals(searchItemName)){
+                System.out.println("Book name matched");
+            }
+            else{
+                System.out.println("Result not found");
+            }
+
+        }
+
     }
 }

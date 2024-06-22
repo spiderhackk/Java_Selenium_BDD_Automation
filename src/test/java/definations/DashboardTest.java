@@ -15,7 +15,7 @@ public class DashboardTest extends BaseApp {
     WebDriver driver;
     DashboardPage dpage;
     String[] expectedHeaderNames = {"Image", "Title", "Author", "Publisher"};
-
+    String bookName="Git Pocket Guide";
     @Given("Launch the browser")
     public void launch_the_browser() {
         driver = base.setUp();
@@ -31,8 +31,15 @@ public class DashboardTest extends BaseApp {
         dpage.compareTableData(expectedHeaderNames);
     }
 
+    @Then("Validate the search option")
+    public void validate_the_search_option(){
+        dpage.validateTheSearchBox(bookName);
+    }
+
     @After
     public void closeBrowser() {
         base.tearDown();
     }
+
+
 }
