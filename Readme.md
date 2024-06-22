@@ -14,11 +14,11 @@ Cucumber: BDD framework for writing test scenarios in simple, human-readable lan
 
 Maven: Dependency management and build automation tool for Java projects.
 
-JUnit or TestNG: Testing frameworks for executing test cases and managing test reports.
+TestNG: Testing frameworks for executing test cases and managing test reports.
 
 Git: Version control system for collaborative development and source code management.
 
-IDE (IntelliJ IDEA, Eclipse): Integrated Development Environment for writing and running Java code.
+IDE (IntelliJ IDEA): Integrated Development Environment for writing and running Java code.
 
 ## Key Features:
 
