@@ -1,31 +1,22 @@
 package org.example;
-
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 public class DashboardPage {
 
     private WebDriver driver;
-    private By ListOfHeaderName = By.xpath("//div[@class='rt-table']/div[@class='rt-thead -header']/div/div");
-    private By inputSearchBox = By.xpath("//input[@id='searchBox']");
-    private By searchButton = By.xpath("//span[@id='basic-addon2']");
-    private By resultList = By.xpath("//div[@class='rt-tr-group']//a");
+    private By ListOfHeaderName = By.xpath(Locators.ListOfHeaderName);
+    private By inputSearchBox = By.xpath(Locators.inputSearchBox);
+    private By searchButton = By.xpath(Locators.searchButton);
+    private By resultList = By.xpath(Locators.resultList);
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
     }
     public void navigateToBookStore() {
-        WebElement element = driver.findElement(By.xpath("//div[@class='rt-table']"));
+        WebElement element = driver.findElement(By.xpath(Locators.tableData));
         boolean is_visible = element.isDisplayed();
-
         if (is_visible){
             System.out.println("Element is displayed");
         }
@@ -60,8 +51,10 @@ public class DashboardPage {
         List<WebElement> element = driver.findElements(resultList);
         int elementsCount = element.size();
         for (int i =1;i<=elementsCount;i++){
-            WebElement getBookName = driver.findElement(By.xpath("(//div[@class='rt-tr-group']//a)["+ i +"]"));
+            String getBookNameXpath= Locators.getFormatXpathElement(Locators.getBookName,i);
+            WebElement getBookName = driver.findElement(By.xpath(getBookNameXpath));
             String bookName =getBookName.getText();
+
             if (bookName.equals(searchItemName)){
                 System.out.println("Book name matched");
             }

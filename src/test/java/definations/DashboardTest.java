@@ -16,11 +16,14 @@ public class DashboardTest extends BaseApp {
     DashboardPage dpage;
     String[] expectedHeaderNames = {"Image", "Title", "Author", "Publisher"};
     String bookName="Git Pocket Guide";
+
+
     @Given("Launch the browser")
     public void launch_the_browser() {
         driver = base.setUp();
         dpage = new DashboardPage(driver);
     }
+
     @When("User navigate to the book store page")
     public void user_navigate_to_the_book_store_page() {
         dpage.navigateToBookStore();
